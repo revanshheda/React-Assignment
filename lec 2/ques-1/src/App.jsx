@@ -1,26 +1,21 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./Navbar";
+
+import Ques1 from "../questions/Ques1";
+import Ques2 from "../questions/Ques2"
+
 
 const App = () => {
-  const [todos, settodos] = useState([]);
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => res.json())
-      .then((data) => settodos(data));
-  }, []);
-  const completedTodos = todos.filter((todo) => todo.completed === true);
   return (
     <div>
-      <h1>completed todos</h1>
-      <ul>
-        {completedTodos.map((todo)=>(
-          <li key={todo.id}>
-            {todo.id}-{todo.title}
-          </li>
-        ))}
-      </ul>
+      <Navbar />
 
+      <Routes>
+        <Route path="/ques1" element={<Ques1 />} />
+        <Route path="/ques2" element={<Ques2/>} />
+        
+      </Routes>
     </div>
   );
 };
